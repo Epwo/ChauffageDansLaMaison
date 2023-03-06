@@ -1,15 +1,14 @@
 #include "visualisationT.h"
 FILE *f;
-void visualisationT(temp_t myTemp){
-
-}
-void EcrireData(temp_t TempInt,temp_t TempExt){
+void EcrireData(temp_t myTemp){
     if (access("IHM/verrouDATA", F_OK) == 0) {
         // file exists
+        printf("writing in data.txt\n");
         f = fopen("IHM/data.txt","w");
-        fprintf(f,"%d \n",TempExt);
-        fprintf(f,"%d\n",TempInt);
-        printf("%s", x ? "true" : "false");
+        fprintf(f,"%f\n",myTemp.exterieure);
+        printf("%f",myTemp.exterieure);
+        fprintf(f,"%f\n",myTemp.interieure);
+        fprintf("%s", 1 ? "true" : "false");
 
     } else {
         // file doesn't exist
@@ -17,5 +16,8 @@ void EcrireData(temp_t TempInt,temp_t TempExt){
     }
 
 
-
+}
+void visualisationT(temp_t myTemp){
+    printf("salut\n");
+    EcrireData(myTemp);
 }

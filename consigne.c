@@ -1,6 +1,5 @@
 #include "consigne.h"
-//commentaire de test git
-//146
+
    float consigne(float thermostatPrec_f)
    {
    
