@@ -3,6 +3,7 @@
 #include "simulateur.h"
 #include "visualisationC.h"
 #include "visualisationT.h"
+#include "consigne.h"
 
 int main(){
 
