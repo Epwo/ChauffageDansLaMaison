@@ -20,7 +20,6 @@ FILE *verrouC;
           fc = fopen("IHM/consigne.txt","r");
           fclose(verrouC);
           fscanf(fc,"%f\n",&consigne);
-
           fclose(fc);
           remove("IHM/.verrouConsigne");
           return consigne;
