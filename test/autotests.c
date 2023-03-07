@@ -41,7 +41,7 @@ float testConsigne(){
 	*********************************/
 	consigne_read=consigne(consigne_val[1]);
 	if(consigne_read==consigne_val[0]){
-		score +=0.5; 
+		score +=0.5;
 		//CU_PASS("test_consigne_reader");
 		#ifdef DISPLAY_DEBUG
 		printf("test_consigne_reader OK\n");
@@ -59,14 +59,14 @@ float testConsigne(){
 		/*********************************************
 		Data file initialisation
 		**********************************************/
-		pf=fopen("consigne.txt","w");
+		pf=fopen("IHM/consigne.txt","w");
 		if(pf==NULL){
 			perror("in testu_consigne.c, file not found");
 		}
 		fprintf(pf,"%.2f\n",consigne_val[0]);
 		fclose(pf);
 		// Create lock file
-		pf = fopen(".verrouConsigne","w");
+		pf = fopen("IHM/.verrouConsigne","w");
 		fclose(pf);
 		/**********************************
 		 Check consigne function: lock file .verrouConsigne
@@ -74,10 +74,10 @@ float testConsigne(){
 		// Read in the consigne.txt file (should not work)
 		consigne_read=consigne(consigne_val[1]);
 
-		if( access( ".verrouConsigne", F_OK ) != -1 )
+		if( access( "IHM/.verrouConsigne", F_OK ) != -1 )
 		{ 
 			//End of test: remove lock
-			remove(".verrouConsigne");
+			remove("IHM/.verrouConsigne");
 		}
 
 		if(consigne_read==consigne_val[1]){
