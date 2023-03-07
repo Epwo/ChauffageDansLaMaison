@@ -488,11 +488,17 @@ float testRegulationPID(){
 }
 
 int main(){
-    printf("testConsigne : %f\n",testConsigne());
-    printf("testRegulPID : %f\n",testRegulationPID());
-    printf("testRegulTOR : %f\n",testRegulationTOR());
-    printf("testVisuC : %f\n",testVisualisationC());
-    printf("testVisuT : %f\n",testVisualisationT());
+    int TC = testConsigne()*100;
+    int TRPID = testRegulationPID()*100;
+    int TRTOR = testRegulationTOR()*100;
+    int TVC = testVisualisationC()*100;
+    int TVT = testVisualisationT()*100;
+    printf("testConsigne : %d %\n",TC);
+    printf("testRegulPID : %d %\n",TRPID);
+    printf("testRegulTOR : %d %\n",TRTOR);
+    printf("testVisuC : %d %\n",TVC);
+    printf("testVisuT : %d %\n",TVT);
+    printf("---- \n Tot = %d / 500",(TC+TRPID+TRTOR+TVC+TVT));
 
 
 }
