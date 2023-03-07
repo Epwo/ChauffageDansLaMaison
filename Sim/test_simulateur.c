@@ -14,8 +14,10 @@ int main(){
 	float puissance = 70.0; // puissance de chauffage
 	for(i=0;i< 30;i++){
 		temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
+        visualisationT(temperature);
+        sleep(1);
 	}
 	simDestruct(monSimulateur_ps); // destruction de simulateur
-    visualisationT(temperature);
+
 	return EXIT_SUCCESS;
 }

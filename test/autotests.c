@@ -139,9 +139,9 @@ float testVisualisationT(){
 	/**********************************************
 	Remove verrou if exists
 	**********************************************/
-	if( access( ".verrouData", F_OK )!=-1)
+	if( access( "IHM/.verrouData", F_OK )!=-1)
 	{
-		remove(".verrouData");
+		remove("IHM/.verrouData");
 	}
 
 	/*******************************
@@ -167,7 +167,7 @@ float testVisualisationT(){
 	if(test_display==1){
 		#ifdef DISPLAY_DEBUG
 		printf("test visualisationT_display OK\n");
-		#endif 
+        #endif
 		score+=0.5;
 		//CU_PASS("test_visualisationT_display");
 
@@ -190,7 +190,7 @@ float testVisualisationT(){
 		fprintf(pf,"%s",temoin_chauffe);
 		fclose(pf);
 		// Create lock file
-		pf = fopen(".verrouData","w");
+		pf = fopen("IHM/.verrouData","w");
 		fclose(pf);
 		/**********************************
 		 Check visualisationT function: lock file .verrouData
@@ -198,10 +198,10 @@ float testVisualisationT(){
 		// Data to write in the data.txt file (should not work)
 		visualisationT(temperature[2]);
 
-		if( access( ".verrouData", F_OK ) != -1 )
+		if( access( "IHM/.verrouData", F_OK ) != -1 )
 		{ 
 			//End of test: remove lock
-			remove(".verrouData");
+			remove("IHM/.verrouData");
 		}
 
 		// Check value from data.txt
@@ -267,9 +267,9 @@ float testVisualisationC(){
 	/**********************************************
 	Remove verrou if exists
 	**********************************************/
-	if( access( ".verrouData", F_OK )!=-1)
+	if( access( "IHM/.verrouData", F_OK )!=-1)
 	{
-		remove(".verrouData");
+		remove("IHM/.verrouData");
 	}
 
 	for(i=0;i<=1;i++){
@@ -297,7 +297,7 @@ float testVisualisationC(){
 		{
 			strcpy(temoin_chauffe,"true");
 		}
-		pf=fopen("data.txt","r");
+		pf=fopen("IHM/data.txt","r");
 		if(pf!=NULL){
 			fscanf(pf,"%f\n%f",&exterieure_read,&interieure_read);
 			fscanf(pf,"%s",temoin_chauffe_read);
@@ -341,15 +341,15 @@ float testVisualisationC(){
 		fclose(pf);
 	
 		// Create lock file
-		pf = fopen(".verrouData","w");
+		pf = fopen("IHM/.verrouData","w");
 		fclose(pf);
 
 		// data to write in the data.txt file (should not work)
 		visualisationC(puissance[0]);
 
-		if( access( ".verrouData", F_OK ) != -1 ){ 
+		if( access( "IHM/.verrouData", F_OK ) != -1 ){
 			//End of test: remove lock
-			remove(".verrouData");
+			remove("IHM/.verrouData");
 		}
 
 		// Check value from data.txt
