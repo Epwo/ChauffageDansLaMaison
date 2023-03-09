@@ -21,10 +21,10 @@ int main(){
 	for(i=1;i< 31;i++){
         Tabf[i] = temperature.interieure;
 		temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
-        //visualisationT(temperature);
+        visualisationT(temperature);
         //REVENIR ICI
         puissance = regulationTest(2, 19,Tabf,i);
-        //visualisationC(puissance);
+        visualisationC(puissance);
         sleep(1);
 	}
 	simDestruct(monSimulateur_ps); // destruction de simulateur
