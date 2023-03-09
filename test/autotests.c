@@ -5,6 +5,7 @@
 #include "visualisationC.h"
 #include "regulation.h"
 #include <math.h>
+
 float testConsigne(){
 	
 	float score=0.0;
@@ -59,7 +60,7 @@ float testConsigne(){
 		/*********************************************
 		Data file initialisation
 		**********************************************/
-		pf=fopen("consigne.txt","w");
+		pf=fopen("IHM/consigne.txt","w");
 		if(pf==NULL){
 			perror("in testu_consigne.c, file not found");
 		}
@@ -488,11 +489,11 @@ float testRegulationPID(){
 }
 
 int main(){
-    printf("testConsigne : %f\n",testConsigne());
+    //printf("testConsigne : %f\n",testConsigne());
     printf("testRegulPID : %f\n",testRegulationPID());
-    printf("testRegulTOR : %f\n",testRegulationTOR());
-    printf("testVisuC : %f\n",testVisualisationC());
-    printf("testVisuT : %f\n",testVisualisationT());
+    //printf("testRegulTOR : %f\n",testRegulationTOR());
+    //printf("testVisuC : %f\n",testVisualisationC());
+    //printf("testVisuT : %f\n",testVisualisationT());
 
 
 }

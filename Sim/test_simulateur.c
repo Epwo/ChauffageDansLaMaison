@@ -3,6 +3,7 @@
 #include "simulateur.h"
 #include "visualisationC.h"
 #include "visualisationT.h"
+#include "regulation.h"
 
 int main(){
 
@@ -13,11 +14,14 @@ int main(){
 	int i=0; // increment de boucle
 	float puissance = 70.0; // puissance de chauffage
 	for(i=0;i< 30;i++){
+        float tableau[] = {temperature.interieure};
+        float tab[] = {15, 16,17};
+        float puissance = regulationTest(2, 12, tableau,30);
+        //float puissance = regulationTest(2, 18, tab, 30);
 		temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
-        visualisationT(temperature);
+        //visualisationT(temperature);
         sleep(1);
 	}
-	simDestruct(monSimulateur_ps); // destruction de simulateur
-
+    //simDestruct(monSimulateur_ps); // destruction de simulateur
 	return EXIT_SUCCESS;
 }
