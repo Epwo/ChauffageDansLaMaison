@@ -18,10 +18,13 @@ float extRead, intRead = 0;
         state = 0;
     }
         if (access("IHM/.verrouData", F_OK) != -1) {
-            // file exists
+            //file exists : verrou existant → fichier ouvert
             perror("in VisualC : Error, verrou exists. cant use data.txt");
+            //message d'erreur si verrou empêche l'ouverture du fichier
 
         } else {
+            //file dosnt exists : verrou inexistant → fichier fermé
+            // Création du verrou pour l'ouverture du fichier data.txt
             verrouD2 = fopen("IHM/.verrouData","w");
             fd2 = fopen("IHM/data.txt","r+");
             fclose(verrouD2);

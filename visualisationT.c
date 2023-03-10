@@ -8,14 +8,15 @@ void EcrireData(temp_t myTemp){
     //LIRE TRUE ou FALSE pour remettre apres
 
     if (access("IHM/.verrouData", F_OK) != -1) {
-        // file exists
+        //file exists : verrou existant → fichier ouvert
         perror("in VisualT : Error, verrou exists. cant use data.txt");
+        //message d'erreur si verrou empêche l'ouverture du fichier
 
     } else {
-        // file doesn't exist
+        //file dosnt exists : verrou inexistant → fichier fermé
         printf("writing in data.txt\n");
 
-        //creation de verouData
+        // Création du verrou pour l'ouverture du fichier data.txt
         verrouD = fopen("IHM/.verrouData","w");
         //open data.txt in reading mode to save Chauffage state value
         fd = fopen("IHM/data.txt","r+");
