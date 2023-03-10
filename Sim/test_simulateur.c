@@ -18,12 +18,15 @@ int main(){
 	struct simParam_s*  monSimulateur_ps = simConstruct(temperature); // creation du simulateur, puissance intialis�e � 0%
 	int i=0; // increment de boucle
 	float puissance = 0; // puissance de chauffage
+    float consigneVal,tempPrec = 0;
+    printf("début boucle\n");
 	for(i=1;i< 31;i++){
         Tabf[i] = temperature.interieure;
 		temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
         visualisationT(temperature);
         //REVENIR ICI
-        puissance = regulationTest(2, 19,Tabf,i);
+        consigneVal = consigne(tempPrec);
+        puissance = regulationTest(2, consigneVal,Tabf,i);
         visualisationC(puissance);
         sleep(1);
 	}
