@@ -5,7 +5,6 @@
 #include "visualisationC.h"
 #include "regulation.h"
 #include <math.h>
-
 float testConsigne(){
 	
 	float score=0.0;
@@ -32,9 +31,9 @@ float testConsigne(){
 	/**********************************************
 	Remove verrou if exists
 	**********************************************/
-	if( access( ".verrouConsigne", F_OK )!=-1)
+	if( access( "IHM/.verrouConsigne", F_OK )!=-1)
 	{
-		remove(".verrouConsigne");
+		remove("IHM/.verrouConsigne");
 	}
 
 	/*******************************
@@ -42,7 +41,7 @@ float testConsigne(){
 	*********************************/
 	consigne_read=consigne(consigne_val[1]);
 	if(consigne_read==consigne_val[0]){
-		score +=0.5; 
+		score +=0.5;
 		//CU_PASS("test_consigne_reader");
 		#ifdef DISPLAY_DEBUG
 		printf("test_consigne_reader OK\n");
@@ -67,7 +66,7 @@ float testConsigne(){
 		fprintf(pf,"%.2f\n",consigne_val[0]);
 		fclose(pf);
 		// Create lock file
-		pf = fopen(".verrouConsigne","w");
+		pf = fopen("IHM/.verrouConsigne","w");
 		fclose(pf);
 		/**********************************
 		 Check consigne function: lock file .verrouConsigne
@@ -75,10 +74,10 @@ float testConsigne(){
 		// Read in the consigne.txt file (should not work)
 		consigne_read=consigne(consigne_val[1]);
 
-		if( access( ".verrouConsigne", F_OK ) != -1 )
+		if( access( "IHM/.verrouConsigne", F_OK ) != -1 )
 		{ 
 			//End of test: remove lock
-			remove(".verrouConsigne");
+			remove("IHM/.verrouConsigne");
 		}
 
 		if(consigne_read==consigne_val[1]){
@@ -489,11 +488,15 @@ float testRegulationPID(){
 }
 
 int main(){
-    //printf("testConsigne : %f\n",testConsigne());
-    printf("testRegulPID : %f\n",testRegulationPID());
-    //printf("testRegulTOR : %f\n",testRegulationTOR());
-    //printf("testVisuC : %f\n",testVisualisationC());
-    //printf("testVisuT : %f\n",testVisualisationT());
-
-
+    int TC = testConsigne()*100;
+    int TRPID = testRegulationPID()*100;
+    int TRTOR = testRegulationTOR()*100;
+    int TVC = testVisualisationC()*100;
+    int TVT = testVisualisationT()*100;
+    printf("testConsigne : %d %\n",TC);
+    printf("testRegulPID : %d %\n",TRPID);
+    printf("testRegulTOR : %d %\n",TRTOR);
+    printf("testVisuC : %d %\n",TVC);
+    printf("testVisuT : %d %\n",TVT);
+    printf("---- \n Tot = %d / 500",(TC+TRPID+TRTOR+TVC+TVT));
 }
