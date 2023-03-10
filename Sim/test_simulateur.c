@@ -4,6 +4,7 @@
 #include "visualisationC.h"
 #include "visualisationT.h"
 #include "consigne.h"
+#include "regulation.h"
 
 int main(){
 
@@ -12,11 +13,19 @@ int main(){
 	temperature.interieure = 15.0;
 	struct simParam_s*  monSimulateur_ps = simConstruct(temperature); // creation du simulateur, puissance intialis�e � 0%
 	int i=0; // increment de boucle
-	float puissance = 70.0; // puissance de chauffage
+    float T_prec = 0;
+    float Error_prec = 0;
+    float* errorSUM;
+    errorSUM = malloc(sizeof(float));
+    *errorSUM = 0;
+	float puissance; // puissance de chauffage
 	for(i=0;i< 30;i++){
+        puissance = regulation(2, 23, temperature.interieure, errorSUM, T_prec, Error_prec);
+        T_prec = temperature.interieure;
+        Error_prec = 23-temperature.interieure;
 		temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
-        visualisationT(temperature);
         sleep(1);
+        printf("\n");
 	}
 	simDestruct(monSimulateur_ps); // destruction de simulateur
 

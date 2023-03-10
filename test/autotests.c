@@ -31,9 +31,9 @@ float testConsigne(){
 	/**********************************************
 	Remove verrou if exists
 	**********************************************/
-	if( access( ".verrouConsigne", F_OK )!=-1)
+	if( access( "IHM/.verrouConsigne", F_OK )!=-1)
 	{
-		remove(".verrouConsigne");
+		remove("IHM/.verrouConsigne");
 	}
 
 	/*******************************
@@ -499,6 +499,4 @@ int main(){
     printf("testVisuC : %d %\n",TVC);
     printf("testVisuT : %d %\n",TVT);
     printf("---- \n Tot = %d / 500",(TC+TRPID+TRTOR+TVC+TVT));
-
-
 }
