@@ -1,0 +1,32 @@
+cc = mingw32-gcc.exe
+
+App.exe: build testSim.o VisC.o VisT.o Cons.o Regu.o
+	$(cc) build/testSim.o build/VisC.o build/VisT.o build/Cons.o build/Regu.o build/simulateur.o -o App.exe
+
+testSim.o: Sim/test_simulateur.c simulateur.o
+	$(cc) -c Sim/test_simulateur.c -o build/testSim.o
+
+build:
+	mkdir "build"
+
+simulateur.o: Sim/simulateur.c Sim/simulateur.h
+	$(cc) -c Sim/simulateur.c -o build/simulateur.o
+
+VisT.o: visualisationT.c visualisationT.h
+	$(cc) -c visualisationT.c -o build/VisT.o
+
+VisC.o: visualisationC.c visualisationC.h
+	$(cc) -c visualisationC.c -o build/VisC.o
+
+Regu.o: regulation.c regulation.h
+	$(cc) -c regulation.c -o build/Regu.o
+
+Cons.o: consigne.c consigne.h
+	$(cc) -c consigne.c -o build/Cons.o
+
+clean :
+	del *.o
+	del *.exe
+
+all : clean App.exe
+

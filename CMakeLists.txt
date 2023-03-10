@@ -11,8 +11,8 @@ include_directories(IHM)
 add_executable(Projet_info
         Sim/simulateur.c
         Sim/simulateur.h
-        #Sim/test_simulateur.c
-        test/autotests.c
+        Sim/test_simulateur.c
+        #test/autotests.c
         test/autotests.h
         consigne.c
         consigne.h
