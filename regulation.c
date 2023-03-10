@@ -9,7 +9,7 @@ float regulationTest(int regul,float consigne,float* tabT, int nT) {
     int i;
     if (regul == 1) {
         for (i = 0; i < nT; i++) {
-            if ((tabT[i+1] - consigne <= 0)) { //Si temperature intérieur < consigne : ajout de temperature
+            if ((tabT[i] - consigne <= 0)) { //Si temperature intérieur < consigne : ajout de temperature
                 cmd = 40; //Puissance de chauffage
                 //printf("la temperature pris en compte est : %f\n", tabT[0]);
             } else {
@@ -21,7 +21,7 @@ float regulationTest(int regul,float consigne,float* tabT, int nT) {
     else if (regul==2){
         float dt=10; //période de temps
         for (i = 1; i < nT; i++){
-            error = consigne - tabT[i+1];
+            error = consigne - tabT[i];
             derive = (last_error-error)/(dt);
             integrale += (error * dt + (fabs(tabT[i]-tabT[i-1])*dt)/2);
             cmd = Kp*error + Ki*integrale + Kd*derive;

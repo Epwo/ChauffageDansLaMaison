@@ -17,20 +17,24 @@ int main(){
 	int i=0; // increment de boucle
     float T_prec = 0;
     float Error_prec = 0;
-    float consigneVal=0;
-    float* errorSUM;
-    errorSUM = malloc(sizeof(float));
-    *errorSUM = 0;
+    float consigneVal,consignePrec =0;
+    float* integrale;
+    integrale = malloc(sizeof(float));
+    *integrale = 0;
 	float puissance = 0; // puissance de chauffage
-	for(i=1;i< 31;i++){
+	while(1){
         consigneVal = consigne(T_prec);
-        puissance = regulation(2, consigneVal, temperature.interieure, errorSUM, T_prec, Error_prec);
+        if(consigneVal != consignePrec){
+            *integrale = 0;
+        }
+        puissance = regulation(2, consigneVal, temperature.interieure, integrale, T_prec, Error_prec);
         visualisationT(temperature);
         T_prec = temperature.interieure;
         Error_prec = consigneVal-temperature.interieure;
         temperature=simCalc(puissance,monSimulateur_ps); // simulation de l'environnement
         visualisationC(puissance);
-        sleep(1);
+        usleep(800000);
+        consignePrec = consigneVal;
         printf("\n");
 	}
 	simDestruct(monSimulateur_ps); // destruction de simulateur
